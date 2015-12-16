@@ -16,7 +16,7 @@ public class Player extends Character {
     /**
      * 
      */
-    private void name;
+    private String name;
 
     /**
      * 

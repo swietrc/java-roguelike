@@ -16,17 +16,17 @@ public class Room {
     /**
      * 
      */
-    private void width;
+    private int width;
 
     /**
      * 
      */
-    private void height;
+    private int height;
 
     /**
      * 
      */
-    private void level;
+    private int level;
 
 
 }

@@ -16,12 +16,12 @@ public class Position {
     /**
      * 
      */
-    private void x;
+    private int x;
 
     /**
      * 
      */
-    private void y;
+    private int y;
 
     /**
      * 
