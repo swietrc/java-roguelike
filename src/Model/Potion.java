@@ -16,7 +16,18 @@ public abstract class Potion extends Entity {
     /**
      * 
      */
-    private int strength;
+    private int strengthModifier;
 
+    /**
+     * 
+     */
+    private char sprite;
+
+    /**
+     * 
+     */
+    public void trigger() {
+        // TODO implement here
+    }
 
 }

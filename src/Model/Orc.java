@@ -13,4 +13,9 @@ public class Orc extends Monster {
     public Orc() {
     }
 
+    /**
+     * 
+     */
+    private static String type;
+
 }

@@ -13,4 +13,9 @@ public class Dwarf extends Monster {
     public Dwarf() {
     }
 
+    /**
+     * 
+     */
+    private static String type;
+
 }

@@ -13,8 +13,9 @@ public class Dungeon {
     public Dungeon() {
     }
 
-
-
-
+    /**
+     * 
+     */
+    private Set<Room> rooms;
 
 }

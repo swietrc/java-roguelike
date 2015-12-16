@@ -13,15 +13,34 @@ public class Game {
     public Game() {
     }
 
+    /**
+     * 
+     */
+    private boolean over;
+
+    /**
+     * 
+     */
+    private Game instance;
 
     /**
      * 
      */
     private Player player;
 
+
     /**
      * 
      */
-    private Dungeon instance;
+    public void start() {
+        // TODO implement here
+    }
+
+    /**
+     * 
+     */
+    private void Game() {
+        // TODO implement here
+    }
 
 }

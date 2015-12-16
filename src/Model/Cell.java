@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Cell extends Location {
+public class Cell {
 
     /**
      * Default constructor
@@ -13,19 +13,21 @@ public class Cell extends Location {
     public Cell() {
     }
 
+    /**
+     * 
+     */
+    private char sprite;
 
-
+    /**
+     * 
+     */
+    private Color color;
 
     /**
      * 
      */
     private Entity entity;
 
-
-    /**
-     * 
-     */
-    public Entity cell;
 
     /**
      * @return

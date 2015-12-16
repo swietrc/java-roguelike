@@ -5,23 +5,24 @@ import java.util.*;
 /**
  * 
  */
-public class Monster extends Character {
+public class Stairs extends Cell {
 
     /**
      * Default constructor
      */
-    public Monster() {
+    public Stairs() {
     }
 
     /**
      * 
      */
-    private char sprite;
+    private int direction;
+
 
     /**
-     * 
+     * @param p
      */
-    public void trigger() {
+    public void trigger(Player p) {
         // TODO implement here
     }
 

@@ -1,16 +1,16 @@
-package Model;
+package View;
 
 import java.util.*;
 
 /**
  * 
  */
-public class Gold {
+public class GameFrame extends JFrame {
 
     /**
      * Default constructor
      */
-    public Gold() {
+    public GameFrame() {
     }
 
 

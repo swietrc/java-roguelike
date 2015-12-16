@@ -18,5 +18,21 @@ public class Player extends Character {
      */
     private void name;
 
+    /**
+     * 
+     */
+    private char sprite;
+
+    /**
+     * 
+     */
+    private Cell position;
+
+    /**
+     * @param cell
+     */
+    public void move(Cell cell) {
+        // TODO implement here
+    }
 
 }

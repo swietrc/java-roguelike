@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Room extends Location {
+public class Room {
 
     /**
      * Default constructor
@@ -27,8 +27,6 @@ public class Room extends Location {
      * 
      */
     private void level;
-
-
 
 
 }

@@ -18,6 +18,16 @@ public class Treasure extends Entity {
      */
     private int gold;
 
+    /**
+     * 
+     */
+    private char sprite;
 
+    /**
+     * 
+     */
+    public void trigger() {
+        // TODO implement here
+    }
 
 }

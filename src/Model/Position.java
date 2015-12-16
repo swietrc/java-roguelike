@@ -5,25 +5,27 @@ import java.util.*;
 /**
  * 
  */
-public abstract class Entity {
+public class Position {
 
     /**
      * Default constructor
      */
-    public Entity() {
+    public Position() {
     }
 
     /**
      * 
      */
-    private char sprite;
-
+    private void x;
 
     /**
      * 
      */
-    public void trigger() {
-        // TODO implement here
-    }
+    private void y;
+
+    /**
+     * 
+     */
+    private Room room;
 
 }

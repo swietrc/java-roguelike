@@ -25,4 +25,11 @@ public abstract class Character extends Entity {
 
 
 
+    /**
+     * 
+     */
+    public void trigger() {
+        // TODO implement here
+    }
+
 }
