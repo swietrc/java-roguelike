@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Monster;
+
 import java.util.*;
 
 /**

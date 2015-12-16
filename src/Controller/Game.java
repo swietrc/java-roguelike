@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Player;
+
 import java.util.*;
 
 /**

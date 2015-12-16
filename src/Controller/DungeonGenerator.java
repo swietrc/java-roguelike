@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Room;
+
 import java.util.*;
 
 /**
@@ -31,7 +33,7 @@ public class DungeonGenerator {
     /**
      * @return
      */
-    public Set<Room> generateDungeon() {
+    public Dungeon generateDungeon() {
         // TODO implement here
         return null;
     }

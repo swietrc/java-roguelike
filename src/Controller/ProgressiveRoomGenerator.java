@@ -22,13 +22,4 @@ public class ProgressiveRoomGenerator implements IDungeonGenerator {
         return null;
     }
 
-    /**
-     * @param maxDepth 
-     * @return
-     */
-    public Dungeon generateDungeon(int maxDepth) {
-        // TODO implement here
-        return null;
-    }
-
 }

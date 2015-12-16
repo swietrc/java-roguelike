@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Room;
+
 import java.util.*;
 
 /**
@@ -16,6 +18,6 @@ public class Dungeon {
     /**
      * 
      */
-    private Set<Room> rooms;
+    private Room[] rooms;
 
 }

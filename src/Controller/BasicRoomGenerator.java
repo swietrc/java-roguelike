@@ -41,17 +41,17 @@ public class BasicRoomGenerator implements IDungeonGenerator {
     /**
      * 
      */
-    public void COEF_MONSTER;
+    public float COEF_MONSTER;
 
     /**
      * 
      */
-    public void COEF_POTION;
+    public float COEF_POTION;
 
     /**
      * 
      */
-    public void COEF_TREASURE;
+    public float COEF_TREASURE;
 
     /**
      * @param maxDepth 
@@ -61,14 +61,4 @@ public class BasicRoomGenerator implements IDungeonGenerator {
         // TODO implement here
         return null;
     }
-
-    /**
-     * @param maxDepth 
-     * @return
-     */
-    public Dungeon generateDungeon(int maxDepth) {
-        // TODO implement here
-        return null;
-    }
-
 }
