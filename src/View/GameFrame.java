@@ -1,5 +1,7 @@
 package View;
 
+import Utils.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,19 +11,14 @@ public class GameFrame extends JFrame {
     public static final int HEIGHT = 480;
 
     JPanel mainPanel = new JPanel(new BorderLayout());
-    MapPanel p = new MapPanel(new Dimension(WIDTH - 10, HEIGHT - 10));
+    Map p = new Map();
 
     public GameFrame() {
-        super("Roguelike");
-        this.setContentPane(this.mainPanel);
-        this.setSize(640, 480);
+        super("Roguelike" + Utils.VERSION);
+        this.setContentPane(new GamePanel());
+        this.setSize(Utils.WIDTH, Utils.HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel lbl = new JLabel("RogueLike");
-        lbl.setHorizontalAlignment(JLabel.CENTER);
-        this.mainPanel.add(lbl, BorderLayout.NORTH);
-        JTextArea test = new JTextArea();
-        test.setText(".....@.....");
         this.mainPanel.add(new JTextField(), BorderLayout.CENTER);
         this.setVisible(true);
     }
@@ -29,6 +26,4 @@ public class GameFrame extends JFrame {
     public static void main(String[] args) {
         new GameFrame();
     }
-
-
 }
