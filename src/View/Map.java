@@ -8,11 +8,27 @@ import java.awt.*;
 public class Map extends JTextArea {
 
     public Map() {
-        super();
-        this.setSize(Utils.WIDTH, Utils.HEIGHT);
+        super(20, 20);
+        init();
         this.setBackground(Color.BLACK);
-        this.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
-        System.out.println(this.getRows());
-        System.out.println(this.getColumns());
+        this.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
+        this.setForeground(Color.WHITE);
+    }
+
+    private void init() {
+        String str = "";
+        //this.setEditable(false);
+        this.setSize(50, 50);
+        for (int i = 0; i < (80 / 2) - 20; i++) {
+            str += " ";
+        }
+        for (int i = 0; i < 10; i++) {
+            str += ".";
+        }
+        str += "@";
+        for (int i = 0; i < 9; i++) {
+            str += ".";
+        }
+        this.setText(str);
     }
 }

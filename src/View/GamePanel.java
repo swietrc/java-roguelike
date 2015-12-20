@@ -10,12 +10,13 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         init();
-        this.setLayout(new BorderLayout());
-        this.add(topLabel, BorderLayout.NORTH);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(this.topLabel);
         this.add(new Map());
     }
 
     private void init() {
-        topLabel.setHorizontalAlignment(JLabel.CENTER);
+        this.topLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        this.topLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, Utils.TEXTSIZE));
     }
 }
