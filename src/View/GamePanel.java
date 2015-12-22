@@ -4,19 +4,31 @@ import Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel {
     private JLabel topLabel = new JLabel("Roguelike");
+    private JLabel gameInfo = new JLabel();
+    private TextMap map = new TextMap();
 
     public GamePanel() {
         init();
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(this.topLabel);
-        this.add(new Map());
+        this.setFocusable(false);
+        this.setLayout(new BorderLayout());
+        this.add(this.topLabel, BorderLayout.NORTH);
+        this.add(map, BorderLayout.CENTER);
+        this.add(gameInfo, BorderLayout.SOUTH);
+        updateInfo();
     }
 
     private void init() {
-        this.topLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        this.topLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, Utils.TEXTSIZE));
+        this.topLabel.setHorizontalAlignment(JLabel.CENTER);
+        this.topLabel.setFont(Utils.MENU_FONT);
+        this.gameInfo.setFont(Utils.MENU_FONT);
+    }
+
+    private void updateInfo() {
+        this.gameInfo.setText("Gold: 0 | Monsters: 50 | Strength: 50");
     }
 }

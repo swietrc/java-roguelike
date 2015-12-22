@@ -5,12 +5,12 @@ import java.util.*;
 /**
  * 
  */
-public class BasicRoomGenerator implements IDungeonGenerator {
+public class BasicDungeonGenerator implements IDungeonGenerator {
 
     /**
      * Default constructor
      */
-    public BasicRoomGenerator() {
+    public BasicDungeonGenerator() {
     }
 
     /**
