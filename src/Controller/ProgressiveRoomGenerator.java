@@ -19,7 +19,7 @@ public class ProgressiveRoomGenerator implements IDungeonGenerator {
      * @param maxDepth 
      * @return
      */
-    public Dungeon generateDungeon(int maxDepth) {
+    public Dungeon generateDungeon() {
         Room[] rooms = new Room[5];
         return new Dungeon(rooms);
     }
