@@ -1,10 +1,9 @@
 package View;
 
+import Controller.Game;
 import Utils.Utils;
-import javafx.scene.input.KeyCode;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -21,22 +20,12 @@ public class GameFrame extends JFrame {
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                int keyCode = e.getKeyCode();
-                switch (keyCode) {
-                    case KeyEvent.VK_UP:
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        break;
-                }
+                Game.getInstance().keyPressed(e);
             }
         });
     }
 
     public static void main(String[] args) {
-        new GameFrame();
+        Game.getInstance().run();
     }
 }
