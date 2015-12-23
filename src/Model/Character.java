@@ -26,13 +26,13 @@ public abstract class Character extends Entity {
                 if (y > 0) y--;
                 break;
             case EAST:
-                x++;
+                if (x < this.getCurrentRoom().getWidth() - 1) x++;
                 break;
             case SOUTH:
-                y++;
+                if (y < this.getCurrentRoom().getHeight() - 1) y++;
                 break;
             case WEST:
-                x--;
+                if (x > 0) x--;
                 break;
         }
     }

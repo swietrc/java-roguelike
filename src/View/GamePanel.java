@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Contains the panel shown when a game has started
+ */
 public class GamePanel extends JPanel {
     private JLabel topLabel = new JLabel("Roguelike");
     private JLabel gameInfo = new JLabel();
@@ -14,8 +17,6 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         init();
-        this.setFocusable(false);
-        this.setLayout(new BorderLayout());
         this.add(this.topLabel, BorderLayout.NORTH);
         this.add(map, BorderLayout.CENTER);
         this.add(gameInfo, BorderLayout.SOUTH);
@@ -26,6 +27,8 @@ public class GamePanel extends JPanel {
         this.topLabel.setHorizontalAlignment(JLabel.CENTER);
         this.topLabel.setFont(Utils.MENU_FONT);
         this.gameInfo.setFont(Utils.MENU_FONT);
+        this.setFocusable(false);
+        this.setLayout(new BorderLayout());
     }
 
     public void refresh(String roomStr) {

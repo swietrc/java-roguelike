@@ -2,6 +2,8 @@ package Controller;
 
 import Model.*;
 import Model.Character;
+import View.GameFrame;
+import View.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -15,6 +17,7 @@ public class Game {
     private boolean running;
 
     private Player player;
+    private GamePanel display;
 
     private IDungeonGenerator dungeonGenerator = new ProgressiveRoomGenerator();
 
@@ -24,6 +27,7 @@ public class Game {
     public Game() {
         Room r = new Room(5, 5, -1);
         this.player = new Player("Simon", r, 2, 2);
+        r.getCell(2, 2).setEntity(player);
 
     }
 
@@ -32,7 +36,9 @@ public class Game {
      * Main Game Loop
      */
     public void run() {
-        new View.GameFrame();
+        GameFrame gameFrame = new View.GameFrame();
+        display = (GamePanel) gameFrame.getContentPane();
+        display.refresh(player.getCurrentRoom().toString());
     }
 
     public void keyPressed(KeyEvent e) {
@@ -50,6 +56,7 @@ public class Game {
                 moveCharacter(player, Direction.EAST);
                 break;
         }
+        display.refresh(player.getCurrentRoom().toString());
     }
 
     private void moveCharacter(Character c, Direction d) {
@@ -71,10 +78,18 @@ public class Game {
                 if (newX > 0) newX--;
                 break;
         }
+
+        System.out.println("X: "+newX+"\nY: "+newY);
+
+        Cell currentCell = c.getCurrentRoom().getCell(c.getX(), c.getY());
         Cell newCell = c.getCurrentRoom().getCell(newX, newY);
-        newCell.trigger(c);
-        newCell.setEntity(c);
-        c.move(d);
+
+        if (newCell != currentCell) {
+            newCell.trigger(c);
+            newCell.setEntity(c);
+            currentCell.setEntity(null);
+            c.move(d);
+        }
     }
 
     public static Game getInstance() {
