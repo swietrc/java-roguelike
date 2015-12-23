@@ -9,15 +9,9 @@ import java.util.*;
  */
 public class Dungeon {
 
-    /**
-     * Default constructor
-     */
-    public Dungeon() {
-    }
-
-    /**
-     * 
-     */
     private Room[] rooms;
 
+    public Dungeon(Room[] rooms) {
+        this.rooms = rooms;
+    }
 }

@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Room;
+
 import java.util.*;
 
 /**
@@ -18,8 +20,8 @@ public class ProgressiveRoomGenerator implements IDungeonGenerator {
      * @return
      */
     public Dungeon generateDungeon(int maxDepth) {
-        // TODO implement here
-        return null;
+        Room[] rooms = new Room[5];
+        return new Dungeon(rooms);
     }
 
 }
