@@ -81,14 +81,11 @@ public class Game {
 
         System.out.println("X: "+newX+"\nY: "+newY);
 
-        Cell currentCell = c.getCurrentRoom().getCell(c.getX(), c.getY());
+        Cell currentCell = c.getCurrentCell();
         Cell newCell = c.getCurrentRoom().getCell(newX, newY);
 
         if (newCell != currentCell) {
             newCell.trigger(c);
-            newCell.setEntity(c);
-            currentCell.setEntity(null);
-            c.move(d);
         }
     }
 

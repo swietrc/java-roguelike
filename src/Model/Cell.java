@@ -6,13 +6,11 @@ package Model;
 public class Cell {
 
     private char sprite = '.';
-
     private boolean visited = false;
 
     private Entity entity;
 
     private final int x;
-
     private final int y;
 
     /**
@@ -42,6 +40,10 @@ public class Cell {
         this.visited = true;
         if (!isEmpty())
             this.entity.trigger(c);
+
+        c.getCurrentCell().setEntity(null);
+        c.setCurrentCell(this);
+        this.setEntity(c);
     }
 
     public void setEntity(Entity entity) {

@@ -20,6 +20,7 @@ public abstract class Character extends Entity {
         super();
     }
 
+    @Deprecated
     public void move(Direction d) {
         switch (d) {
             case NORTH:
@@ -75,5 +76,14 @@ public abstract class Character extends Entity {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public Cell getCurrentCell() {
+        return this.currentRoom.getCell(this.getX(), this.getY());
+    }
+
+    public void setCurrentCell(Cell c) {
+        this.x = c.getX();
+        this.y = c.getY();
     }
 }
