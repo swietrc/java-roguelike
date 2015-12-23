@@ -31,13 +31,13 @@ public class GameFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Game.getInstance().run();
+        Game.getInstance().run();
         /*
         Random rand = new Random(12345);
         System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
         System.out.println(rand.nextInt());
         System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
         */
-        new BasicDungeonGenerator().generateDungeon();
+        // new BasicDungeonGenerator().generateDungeon();
     }
 }

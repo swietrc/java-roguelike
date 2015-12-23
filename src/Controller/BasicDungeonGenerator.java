@@ -38,8 +38,6 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
         int nbRooms = rand.nextInt(Math.round(depth * 1.4f) - depth) + depth;
         */
 
-        System.out.println(depth);
-        System.out.println(nbRooms);
 
         Room[] rooms = new Room[5];
         return new Dungeon(rooms);
@@ -50,6 +48,6 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
      * @return
      */
     private Room generateRoom() {
-
+        return null;
     }
 }
