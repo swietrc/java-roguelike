@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.*;
-
 /**
  * 
  */
@@ -19,9 +17,10 @@ public class Monster extends Character {
     private char sprite;
 
     /**
-     * 
+     *
+     * @param c
      */
-    public void trigger() {
+    public void trigger(Character c) {
         // TODO implement here
     }
 

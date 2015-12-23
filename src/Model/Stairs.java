@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.*;
-
 /**
  * 
  */
@@ -10,19 +8,13 @@ public class Stairs extends Cell {
     /**
      * Default constructor
      */
-    public Stairs() {
+    public Stairs(int x, int y) {
+        super(x, y);
     }
 
-    /**
-     * 
-     */
     private int direction;
 
-
-    /**
-     * @param p
-     */
-    public void trigger(Player p) {
+    public void trigger(Character c) {
         // TODO implement here
     }
 

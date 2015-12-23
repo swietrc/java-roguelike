@@ -1,29 +1,25 @@
 package Model;
 
-import java.util.*;
-
-/**
- * 
- */
 public abstract class Entity {
+
+    private char sprite;
 
     /**
      * Default constructor
      */
-    public Entity() {
+    public Entity(char sprite) {
+        this.sprite = sprite;
     }
 
-    /**
-     * 
-     */
-    private char sprite;
+    public Entity() {}
 
+    public abstract void trigger(Character c);
 
-    /**
-     * 
-     */
-    public void trigger() {
-        // TODO implement here
+    public String toString() {
+        return this.getSprite();
     }
 
+    public String getSprite() {
+        return String.valueOf(sprite);
+    }
 }

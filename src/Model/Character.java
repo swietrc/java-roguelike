@@ -1,9 +1,5 @@
 package Model;
 
-import java.util.*;
-
-import static Model.Direction.*;
-
 /**
  * 
  */
@@ -11,6 +7,8 @@ public abstract class Character extends Entity {
 
     private int gold;
     private int strength;
+
+    private Room currentRoom;
 
     private int x;
     private int y;
@@ -25,7 +23,17 @@ public abstract class Character extends Entity {
     public void move(Direction d) {
         switch (d) {
             case NORTH:
-
+                if (y > 0) y--;
+                break;
+            case EAST:
+                x++;
+                break;
+            case SOUTH:
+                y++;
+                break;
+            case WEST:
+                x--;
+                break;
         }
     }
 
@@ -43,5 +51,29 @@ public abstract class Character extends Entity {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }
