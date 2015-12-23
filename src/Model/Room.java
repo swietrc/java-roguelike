@@ -41,7 +41,7 @@ public class Room {
         Cell[][] c = new Cell[height][width];
         for (int i = 0 ; i < c.length ; i++) {
             for (int j = 0 ; j < c[0].length ; j++) {
-                c[i][j] = new Cell(i, j);
+                c[i][j] = new Cell(j, i);
             }
         }
 
