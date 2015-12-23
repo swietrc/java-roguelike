@@ -56,4 +56,11 @@ public class Cell {
         return entity.toString();
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
 }

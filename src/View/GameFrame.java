@@ -1,5 +1,6 @@
 package View;
 
+import Controller.BasicDungeonGenerator;
 import Controller.Game;
 import Model.Room;
 import Utils.Utils;
@@ -7,6 +8,7 @@ import Utils.Utils;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class GameFrame extends JFrame {
 
@@ -28,11 +30,14 @@ public class GameFrame extends JFrame {
         });
     }
 
-    public void refresh(String roomStr) {
-
-    }
-
     public static void main(String[] args) {
-        Game.getInstance().run();
+        // Game.getInstance().run();
+        /*
+        Random rand = new Random(12345);
+        System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
+        System.out.println(rand.nextInt());
+        System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
+        */
+        new BasicDungeonGenerator().generateDungeon();
     }
 }

@@ -10,10 +10,9 @@ public class Room {
 
     Cell[][] cells;
 
-    private final int width;
-    private final int height;
-
-    private int level;
+    private final int width;  /** Room width  */
+    private final int height; /** Room height */
+    private final int level;  /** Level of the room inside the dungeon */
 
     /**
      * Default constructor
@@ -50,7 +49,6 @@ public class Room {
     }
 
     public Cell getCell(int xPos, int yPos) {
-        // TODO: Check cell exists
         return cells[yPos][xPos];
     }
     public String toString() {
@@ -80,5 +78,9 @@ public class Room {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
