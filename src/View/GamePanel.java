@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
         this.gameInfo.setFont(Utils.MENU_FONT);
     }
 
-    private void refresh(String roomStr) {
+    public void refresh(String roomStr) {
         map.drawFromString(roomStr);
     }
 

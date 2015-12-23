@@ -29,7 +29,7 @@ public class GameFrame extends JFrame {
     }
 
     public void refresh(String roomStr) {
-        p.
+
     }
 
     public static void main(String[] args) {
