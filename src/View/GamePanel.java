@@ -28,6 +28,10 @@ public class GamePanel extends JPanel {
         this.gameInfo.setFont(Utils.MENU_FONT);
     }
 
+    private void refresh(String roomStr) {
+        map.drawFromString(roomStr);
+    }
+
     private void updateInfo() {
         this.gameInfo.setText("Gold: 0 | Monsters: 50 | Strength: 50");
     }

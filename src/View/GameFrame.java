@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Game;
+import Model.Room;
 import Utils.Utils;
 
 import javax.swing.*;
@@ -9,9 +10,11 @@ import java.awt.event.KeyEvent;
 
 public class GameFrame extends JFrame {
 
+    GamePanel p = new GamePanel();
+
     public GameFrame() {
         super("Roguelike v" + Utils.VERSION);
-        this.setContentPane(new GamePanel());
+        this.setContentPane(p);
         this.setSize(Utils.WIDTH, Utils.HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -23,6 +26,10 @@ public class GameFrame extends JFrame {
                 Game.getInstance().keyPressed(e);
             }
         });
+    }
+
+    public void refresh(String roomStr) {
+        p.
     }
 
     public static void main(String[] args) {
