@@ -1,5 +1,7 @@
 package Model;
 
+import javax.swing.*;
+
 /**
  * 
  */
@@ -22,12 +24,18 @@ public class Stairs extends Cell {
     private int direction;
 
     public void trigger(Character c) {
-        Cell exitCell = exitRoom.getCell(exitPosX, exitPosY);
-        exitCell.setEntity(c);
-        c.setCurrentRoom(exitRoom);
+        if (JOptionPane.showConfirmDialog(null, "Do you really want to use the stairs ?", "warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            Cell exitCell = exitRoom.getCell(exitPosX, exitPosY);
+            exitCell.setEntity(c);
+            c.setCurrentRoom(exitRoom);
 
-        c.getCurrentCell().setEntity(null);
-        c.setCurrentCell(exitCell);
+            c.getCurrentCell().setEntity(null);
+            c.setCurrentCell(exitCell);
+        }
+    }
+
+    public String toString() {
+        return ">";
     }
 
 }

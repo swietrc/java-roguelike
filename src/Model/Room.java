@@ -45,6 +45,8 @@ public class Room {
             }
         }
 
+        c[0][0] = new Stairs(0,0,this,3,3);
+
         this.cells = c;
     }
 
