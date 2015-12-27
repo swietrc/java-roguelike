@@ -28,7 +28,6 @@ public class Game {
         Room r = new Room(5, 5, -1);
         this.player = new Player("Simon", r, 2, 2);
         r.getCell(2, 2).setEntity(player);
-
     }
 
 
@@ -79,7 +78,7 @@ public class Game {
                 break;
         }
 
-        System.out.println("X: "+newX+"\nY: "+newY);
+        System.out.println("X: "+newX+" Y: "+newY);
 
         Cell currentCell = c.getCurrentCell();
         Cell newCell = c.getCurrentRoom().getCell(newX, newY);
