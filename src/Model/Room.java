@@ -6,7 +6,9 @@ package Model;
 public class Room {
 
     public static final int MAX_WIDTH = 15;
+    public static final int MIN_WIDTH = 4;
     public static final int MAX_HEIGHT= 15;
+    public static final int MIN_HEIGHT = 4;
 
     Cell[][] cells;
 
@@ -31,8 +33,8 @@ public class Room {
 
     public Room(int width, int height, int level) {
         // Check against max size
-        if (width > MAX_WIDTH || height > MAX_HEIGHT || level >= 0)
-            throw new IllegalArgumentException("Ici");
+        if (width > MAX_WIDTH || height > MAX_HEIGHT || level <= 0)
+            throw new IllegalArgumentException(""+width+" "+height+" "+level);
 
         this.width = width;
         this.height = height;
@@ -45,14 +47,17 @@ public class Room {
             }
         }
 
-        c[0][0] = new Stairs(0,0,this,3,3);
-
         this.cells = c;
     }
 
     public Cell getCell(int xPos, int yPos) {
         return cells[yPos][xPos];
     }
+
+    public Cell[][] getCells() {
+        return this.cells;
+    }
+
     public String toString() {
         String res = "";
         for (int i = 0 ; i < this.width + 2 ; i++)

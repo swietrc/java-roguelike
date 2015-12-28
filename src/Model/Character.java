@@ -4,7 +4,7 @@ package Model;
  * 
  */
 public abstract class Character extends Entity {
-
+    // TODO: add way for character to move using a cell + a room
     private int gold;
     private int strength;
 

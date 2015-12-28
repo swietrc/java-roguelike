@@ -13,14 +13,17 @@ public class TextMap extends JPanel implements IMap {
 
     private JTextArea display = new JTextArea();
     public TextMap() {
+        this.setFocusable(false);
         this.setBackground(Color.BLACK);
         this.add(display);
         init();
 
+        /*
         // Display test to be removed
         Room r = new Room(10, 5, -1);
         String str = r.toString(); //= "###########\n#..@......#\n#...>.....#\n#......$..#\n###########";
         drawFromString(str);
+        */
     }
 
     private void init() {
@@ -29,6 +32,7 @@ public class TextMap extends JPanel implements IMap {
         display.setLineWrap(true);
         display.setBackground(Color.BLACK);
         display.setForeground(Color.LIGHT_GRAY);
+        display.setFocusable(false);
     }
 
     @Override

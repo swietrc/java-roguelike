@@ -14,4 +14,8 @@ public class Dungeon {
     public Dungeon(Room[] rooms) {
         this.rooms = rooms;
     }
+
+    public Room[] getRooms() {
+        return rooms;
+    }
 }

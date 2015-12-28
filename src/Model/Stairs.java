@@ -1,6 +1,8 @@
 package Model;
 
 import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -25,11 +27,12 @@ public class Stairs extends Cell {
 
     public void trigger(Character c) {
         if (JOptionPane.showConfirmDialog(null, "Do you really want to use the stairs ?", "warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
             Cell exitCell = exitRoom.getCell(exitPosX, exitPosY);
             exitCell.setEntity(c);
-            c.setCurrentRoom(exitRoom);
 
             c.getCurrentCell().setEntity(null);
+            c.setCurrentRoom(exitRoom);
             c.setCurrentCell(exitCell);
         }
     }

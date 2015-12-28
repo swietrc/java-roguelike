@@ -19,17 +19,18 @@ public class Game {
     private Player player;
     private GamePanel display;
 
-    private IDungeonGenerator dungeonGenerator = new ProgressiveRoomGenerator();
+    private IDungeonGenerator dungeonGenerator;
 
     /**
      * Default constructor
      */
     public Game() {
-        Room r = new Room(5, 5, -1);
-        this.player = new Player("Simon", r, 2, 2);
-        r.getCell(2, 2).setEntity(player);
+        this.dungeonGenerator = new BasicDungeonGenerator(1);
+        Dungeon d = dungeonGenerator.generateDungeon();
+        Room[] rooms = d.getRooms();
+        this.player = new Player("Simon", rooms[0], 0, 0);
+        rooms[0].getCell(0, 0).setEntity(player);
     }
-
 
     /**
      * Main Game Loop
@@ -78,7 +79,7 @@ public class Game {
                 break;
         }
 
-        System.out.println("X: "+newX+" Y: "+newY);
+        // System.out.println("X: "+newX+" Y: "+newY);
 
         Cell currentCell = c.getCurrentCell();
         Cell newCell = c.getCurrentRoom().getCell(newX, newY);
