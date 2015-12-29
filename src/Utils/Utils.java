@@ -12,4 +12,6 @@ public class Utils {
 
     public static final Font MAP_FONT = new Font(Font.MONOSPACED, Font.BOLD, Utils.MAP_TEXTSIZE);
     public static final Font MENU_FONT = new Font(Font.MONOSPACED, Font.BOLD, Utils.TEXTSIZE);
+
+    public static final int DEFAULT_STRENGTH = 50;
 }

@@ -8,6 +8,8 @@ public abstract class Character extends Entity {
     private int gold;
     private int strength;
 
+    private String name;
+
     private Room currentRoom;
 
     private int x;
@@ -16,8 +18,10 @@ public abstract class Character extends Entity {
     /**
      * Default constructor
      */
-    public Character() {
-        super();
+    public Character(String name, int gold, int strength) {
+        this.name = name;
+        this.gold = gold;
+        this.strength = strength;
     }
 
     @Deprecated

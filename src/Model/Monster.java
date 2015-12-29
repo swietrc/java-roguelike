@@ -8,7 +8,8 @@ public class Monster extends Character {
     /**
      * Default constructor
      */
-    public Monster() {
+    public Monster(String name, int strength, int gold) {
+        this.setStrength(strength);
     }
 
     /**

@@ -1,15 +1,14 @@
 package Model;
 
+import Utils.Utils;
+
 /**
  * 
  */
 public class Player extends Character {
 
-
-    private String name;
-
     public Player(String name, Room r, int x, int y) {
-        this.name = name;
+        super(name, 0, Utils.DEFAULT_STRENGTH);
         this.setCurrentRoom(r);
         this.setX(x);
         this.setY(y);
