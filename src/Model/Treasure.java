@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * 
+ * Gives gold to the player who triggers it
  */
 public class Treasure extends Entity {
 

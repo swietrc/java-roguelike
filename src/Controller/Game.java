@@ -65,33 +65,34 @@ public class Game {
     }
 
     private void moveCharacter(Character c, Direction d) {
+        if (!DEAD) {
+            int newX = c.getX();
+            int newY = c.getY();
 
-        int newX = c.getX();
-        int newY = c.getY();
+            switch (d) {
+                case NORTH:
+                    if (newY > 0) newY--;
+                    break;
+                case EAST:
+                    if (newX < c.getCurrentRoom().getWidth() - 1) newX++;
+                    break;
+                case SOUTH:
+                    if (newY < c.getCurrentRoom().getHeight() - 1) newY++;
+                    break;
+                case WEST:
+                    if (newX > 0) newX--;
+                    break;
+            }
 
-        switch (d) {
-            case NORTH:
-                if (newY > 0) newY--;
-                break;
-            case EAST:
-                if (newX < c.getCurrentRoom().getWidth() - 1) newX++;
-                break;
-            case SOUTH:
-                if (newY < c.getCurrentRoom().getHeight() - 1) newY++;
-                break;
-            case WEST:
-                if (newX > 0) newX--;
-                break;
-        }
+            Cell currentCell = c.getCurrentCell();
+            Cell newCell = c.getCurrentRoom().getCell(newX, newY);
 
-        Cell currentCell = c.getCurrentCell();
-        Cell newCell = c.getCurrentRoom().getCell(newX, newY);
+            if (newCell != currentCell) {
+                newCell.trigger(c);
+            }
 
-        if (newCell != currentCell) {
-            newCell.trigger(c);
-        }
-
-        DEAD = c.isAlive();
+            DEAD = c.isAlive();
+        } else System.out.println("You are dead!");
     }
 
     public static Game getInstance() {

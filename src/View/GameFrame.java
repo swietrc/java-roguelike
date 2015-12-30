@@ -10,6 +10,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+/**
+ * Main Window of the game
+ */
 public class GameFrame extends JFrame {
 
     GamePanel p = new GamePanel();

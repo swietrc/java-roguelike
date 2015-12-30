@@ -16,7 +16,6 @@ public class ProgressiveRoomGenerator implements IDungeonGenerator {
     }
 
     /**
-     * @param maxDepth 
      * @return
      */
     public Dungeon generateDungeon() {

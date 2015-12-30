@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Object able to be stored inside a Cell
+ */
 public abstract class Entity {
 
     private char sprite;

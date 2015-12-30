@@ -30,10 +30,17 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
 
     private MonsterGenerator monsterGenerator = MonsterGenerator.getInstance();
 
+    /**
+     * Generates a random dungeon using a seed
+     * @param seed
+     */
     public BasicDungeonGenerator(int seed) {
         randomGenerator = new Random(seed);
     }
 
+    /**
+     * Generates a random dungeon using a random seed
+     */
     public BasicDungeonGenerator() {
         randomGenerator = new Random();
     }
@@ -98,6 +105,10 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
         return new Dungeon(res);
     }
 
+    /**
+     * Generates a random entity using the constants defined in this class
+     * @return random entity
+     */
     private Entity generateEntity() {
         // choose what entity to return
         float entitySelector = ((int) (randomGenerator.nextFloat() * 1000)) / 1000f;
