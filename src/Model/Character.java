@@ -19,6 +19,7 @@ public abstract class Character extends Entity {
      * Default constructor
      */
     public Character(String name, int gold, int strength) {
+        super();
         this.name = name;
         this.gold = gold;
         this.strength = strength;

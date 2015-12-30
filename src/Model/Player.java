@@ -14,6 +14,18 @@ public class Player extends Character {
         this.setY(y);
     }
 
+    public void addGold(int gold) {
+        this.setGold(this.getGold() + gold);
+        System.out.println("GOLD: " + this.getGold());
+    }
+
+    public void addStrength(int strength) {
+        int currentStrength = this.getStrength();
+        this.setStrength(currentStrength + strength);
+        System.out.println("POTION VAL: " + strength);
+        System.out.println("STRENGTH: " + this.getStrength());
+    }
+
     @Override
     public void move(Direction d) {
         super.move(d);
