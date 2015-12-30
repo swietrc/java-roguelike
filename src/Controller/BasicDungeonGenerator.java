@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.Cell;
-import Model.Room;
-import Model.Stairs;
+import Model.*;
 
 import java.util.*;
 
@@ -13,14 +11,15 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
 
     private static final int MAX_DEPTH = 10;
     private static final int MIN_DEPTH = 6;
+
     public int MAX_POTIONS = 50;
     public int MAX_TREASURES = 50;
     public int MIN_POTIONS = 20;
     public int MIN_TREASURES = 20;
 
-    public float COEF_MONSTER = 0.05f;
+    public float COEF_MONSTER = 0.015f;
     public float COEF_POTION = 0.025f;
-    public float COEF_TREASURE = 0.05f;
+    public float COEF_TREASURE = 0.015f;
 
     public int MAX_ROOM_PER_LEVEL = 5;
     public int MIN_ROOM_PER_LEVEL = 1;
@@ -28,6 +27,8 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
     private ArrayList<Room> rooms = new ArrayList<>();
 
     private Random randomGenerator;
+
+    private MonsterGenerator monsterGenerator = MonsterGenerator.getInstance();
 
     public BasicDungeonGenerator(int seed) {
         randomGenerator = new Random(seed);
@@ -79,16 +80,37 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
 
         }
 
+        // generation of entities inside cells
+        for (Room r : this.rooms) {
+            System.out.println(r.getHeight() * r.getWidth());
+            Cell[][] cells = r.getCells();
+            for (Cell[] row : cells) {
+                for (Cell c : row) {
+                    c.setEntity(generateEntity());
+                }
+            }
+        }
+
+
         Room[] res = new Room[this.rooms.size()];
         this.rooms.toArray(res);
 
         return new Dungeon(res);
     }
 
-    /**
-     * Generates a random room
-     * @return
-     */
+    private Entity generateEntity() {
+        // choose what entity to return
+        float entitySelector = ((int) (randomGenerator.nextFloat() * 1000)) / 1000f;
+        if (entitySelector <= COEF_TREASURE)
+            return new Treasure(randomGenerator.nextInt(MAX_TREASURES - MIN_TREASURES) + MIN_TREASURES);
+        else if (entitySelector > COEF_TREASURE && entitySelector < (COEF_MONSTER + COEF_TREASURE))
+            return monsterGenerator.getRandomMonster();
+        else if (entitySelector > (COEF_MONSTER + COEF_TREASURE) && entitySelector < (COEF_MONSTER + COEF_TREASURE + COEF_POTION))
+            return new Potion(randomGenerator.nextInt(MAX_POTIONS - MIN_POTIONS) + MIN_POTIONS);
+        else
+            return null;
+    }
+
     /*
     private Room generateRoom(int level) {
 
@@ -119,6 +141,10 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
     }
     */
 
+    /**
+     * Generates a room of random height and width
+     * @return
+     */
     private Room generateRoom(int level) {
         int width = randomGenerator.nextInt(Room.MAX_WIDTH - Room.MIN_HEIGHT) + Room.MIN_HEIGHT;
         int height = randomGenerator.nextInt(Room.MAX_HEIGHT - Room.MIN_WIDTH) + Room.MIN_WIDTH;
