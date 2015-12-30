@@ -9,13 +9,8 @@ public class Monster extends Character {
      * Default constructor
      */
     public Monster(String name, int strength, int gold) {
-        this.setStrength(strength);
+        super(name, gold, strength);
     }
-
-    /**
-     * 
-     */
-    private char sprite;
 
     /**
      *
@@ -24,5 +19,4 @@ public class Monster extends Character {
     public void trigger(Character c) {
         // TODO implement here
     }
-
 }
