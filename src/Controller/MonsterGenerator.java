@@ -51,17 +51,18 @@ public class MonsterGenerator {
         }
 
         private Monster buildMonster() {
-            int force = randomGenerator.nextInt(this.maxStrength + this.minStrength) - this.minStrength;
-            int gold = randomGenerator.nextInt(this.maxGold + this.minGold) - this.minGold;
+            int strength = randomGenerator.nextInt(this.maxStrength - this.minStrength) + this.minStrength;
+            System.out.println("Build monster with strength " + strength);
+            int gold = randomGenerator.nextInt(this.maxGold - this.minGold) + this.minGold;
 
-            return new Monster(this.name, force, gold);
+            return new Monster(this.name, strength, gold);
         }
     }
 
     public MonsterGenerator() {
         this.randomGenerator = new Random();
         this.monsters = new ArrayList<>();
-        addType("Bat", 1, 2, 2, 5);
+        addType("Bat", 1, 5, 2, 5);
         addType("Centaur", 15, 60, 25, 100);
     }
 
@@ -76,9 +77,7 @@ public class MonsterGenerator {
 
     /**
      * Generates a random monster
-     * @param minStrength 
-     * @param maxStrength 
-     * @return
+     * @return random Monster
      */
     public Monster getRandomMonster() {
         int r = randomGenerator.nextInt(this.monsters.size() - 1);

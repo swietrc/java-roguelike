@@ -14,7 +14,7 @@ import java.util.*;
 public class Game {
 
     private static Game instance;
-    private boolean running;
+    private boolean DEAD;
 
     private Player player;
     private GamePanel display;
@@ -25,7 +25,7 @@ public class Game {
      * Default constructor
      */
     public Game() {
-        this.dungeonGenerator = new BasicDungeonGenerator(1);
+        this.dungeonGenerator = new BasicDungeonGenerator();
         Dungeon d = dungeonGenerator.generateDungeon();
         Room[] rooms = d.getRooms();
         this.player = new Player("Simon", rooms[0], 0, 0);
@@ -42,6 +42,8 @@ public class Game {
     }
 
     public void keyPressed(KeyEvent e) {
+
+        // handle key pressed event
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 moveCharacter(player, Direction.NORTH);
@@ -56,7 +58,10 @@ public class Game {
                 moveCharacter(player, Direction.EAST);
                 break;
         }
+
+        // update display
         display.refresh(player.getCurrentRoom().toString());
+        display.setHUD(player.getGold(), player.getStrength());
     }
 
     private void moveCharacter(Character c, Direction d) {
@@ -79,14 +84,14 @@ public class Game {
                 break;
         }
 
-        // System.out.println("X: "+newX+" Y: "+newY);
-
         Cell currentCell = c.getCurrentCell();
         Cell newCell = c.getCurrentRoom().getCell(newX, newY);
 
         if (newCell != currentCell) {
             newCell.trigger(c);
         }
+
+        DEAD = c.isAlive();
     }
 
     public static Game getInstance() {
