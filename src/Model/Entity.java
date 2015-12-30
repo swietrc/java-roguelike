@@ -11,7 +11,9 @@ public abstract class Entity {
         this.sprite = sprite;
     }
 
-    public Entity() {}
+    public Entity() {
+        this.sprite = '.';
+    }
 
     public abstract void trigger(Character c);
 
