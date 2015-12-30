@@ -3,30 +3,22 @@ package Model;
 /**
  * 
  */
-public abstract class Potion extends Entity {
+public class Potion extends Entity {
+
+    private int strengthModifier;
 
     /**
      * Default constructor
      */
-    public Potion() {
+    public Potion(int strengthModifier) {
+        super('P');
+        this.strengthModifier = strengthModifier;
     }
 
-    /**
-     * 
-     */
-    private int strengthModifier;
-
-    /**
-     * 
-     */
-    private char sprite;
-
-    /**
-     *
-     * @param c
-     */
     public void trigger(Character c) {
-        // TODO implement here
+        if (c instanceof Player) {
+            ((Player) c).addStrength(this.strengthModifier);
+        }
     }
 
 }
