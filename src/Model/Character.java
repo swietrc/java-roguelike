@@ -8,6 +8,8 @@ public abstract class Character extends Entity {
     private int gold;
     private int strength;
 
+    private boolean alive;
+
     private String name;
 
     private Room currentRoom;
@@ -90,5 +92,17 @@ public abstract class Character extends Entity {
     public void setCurrentCell(Cell c) {
         this.x = c.getX();
         this.y = c.getY();
+    }
+
+    public boolean getAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public boolean isAlive() {
+        return this.getAlive();
     }
 }
