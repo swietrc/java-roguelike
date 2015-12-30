@@ -4,8 +4,6 @@ import Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 /**
  * Contains the panel shown when a game has started
@@ -20,7 +18,7 @@ public class GamePanel extends JPanel {
         this.add(this.topLabel, BorderLayout.NORTH);
         this.add(map, BorderLayout.CENTER);
         this.add(gameInfo, BorderLayout.SOUTH);
-        updateInfo();
+        setHUD(0, 0);
     }
 
     private void init() {
@@ -35,7 +33,7 @@ public class GamePanel extends JPanel {
         map.drawFromString(roomStr);
     }
 
-    private void updateInfo() {
-        this.gameInfo.setText("Gold: 0 | Monsters: 50 | Strength: 50");
+    public void setHUD(int gold, int strength) {
+        this.gameInfo.setText("Gold: " + gold + " | Strength: " + strength);
     }
 }
