@@ -64,6 +64,7 @@ public class MonsterGenerator {
         this.monsters = new ArrayList<>();
         addType("Bat", 1, 5, 2, 5);
         addType("Centaur", 15, 60, 25, 100);
+        addType("Dracaufeu", 250, 450, 25, 100);
     }
 
     public void setRandomGenerator(Random r) {
@@ -80,7 +81,7 @@ public class MonsterGenerator {
      * @return random Monster
      */
     public Monster getRandomMonster() {
-        int r = randomGenerator.nextInt(this.monsters.size() - 1);
+        int r = randomGenerator.nextInt(this.monsters.size());
         return this.monsters.get(r).buildMonster();
     }
 

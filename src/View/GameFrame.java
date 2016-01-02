@@ -56,7 +56,11 @@ public class GameFrame extends JFrame {
         gamePanel.refresh(map);
     }
 
-    public void setHUD(int gold, int strength) {
-        gamePanel.setHUD(gold, strength);
+    public void setHUD(int gold, int strength, int floor) {
+        gamePanel.setHUD(gold, strength, floor);
+    }
+
+    public void setNotification(String s) {
+        gamePanel.setNotification(s);
     }
 }

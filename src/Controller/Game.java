@@ -4,11 +4,9 @@ import Model.*;
 import Model.Character;
 import Utils.Const;
 import View.GameFrame;
-import View.GamePanel;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.util.*;
 
 /**
  * 
@@ -19,7 +17,7 @@ public class Game {
     private static Game instance;
     private ConfigurationHolder cfg = new ConfigurationHolder(0, Const.DEFAULT_GENERATOR, Const.DEFAULT_DEPTH);
 
-    private boolean DEAD;
+    private boolean alive;
 
     private Player player;
     private IDungeonGenerator dungeonGenerator;
@@ -58,7 +56,7 @@ public class Game {
     */
 
     public void keyPressed(KeyEvent e) {
-
+        setNotification("");
         // handle key pressed event
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
@@ -77,12 +75,12 @@ public class Game {
 
         // update display
         frame.refresh(player.getCurrentRoom().toString());
-        frame.setHUD(player.getGold(), player.getStrength());
+        frame.setHUD(player.getGold(), player.getStrength(), player.getCurrentRoom().getLevel());
     }
 
     private void moveCharacter(Character c, Direction d) {
         // Checks if player has died
-        if (!DEAD) {
+        if (c.isAlive()) {
             int newX = c.getX();
             int newY = c.getY();
 
@@ -107,9 +105,7 @@ public class Game {
             if (newCell != currentCell) {
                 newCell.trigger(c);
             }
-
-            DEAD = c.isAlive();
-            if (DEAD) {
+            if (!c.isAlive()) {
                 JOptionPane.showConfirmDialog(null, "You died! You had " + this.player.getGold() + " gold!", "warning", JOptionPane.OK_OPTION);
                 this.showTitleScreen();
             }
@@ -133,5 +129,9 @@ public class Game {
 
     public void setConfig(ConfigurationHolder c) {
         this.cfg = c;
+    }
+
+    public void setNotification(String notif) {
+        frame.setNotification(notif);
     }
 }

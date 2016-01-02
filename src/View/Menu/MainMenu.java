@@ -49,8 +49,8 @@ public class MainMenu extends JPanel {
     private void initButtonList() {
         JButton newGameButton = new JButton("NEW GAME");
         JButton scoreboardButton = new JButton("SCOREBOARD");
-        JButton optionsButton = new JButton("Options");
-        JButton exitButton = new JButton("Exit");
+        JButton optionsButton = new JButton("OPTIONS");
+        JButton exitButton = new JButton("EXIT");
 
         newGameButton.addActionListener(new ActionListener() {
             @Override

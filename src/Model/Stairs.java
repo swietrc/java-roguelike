@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.Game;
+
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +36,7 @@ public class Stairs extends Cell {
             c.getCurrentCell().setEntity(null);
             c.setCurrentRoom(exitRoom);
             c.setCurrentCell(exitCell);
+            Game.getInstance().setNotification("You took the stairs to level " + exitRoom.getLevel());
         }
     }
 

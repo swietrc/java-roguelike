@@ -30,6 +30,7 @@ public abstract class Character extends Entity {
         this.name = name;
         this.gold = gold;
         this.strength = strength;
+        this.alive = true;
     }
 
     @Deprecated

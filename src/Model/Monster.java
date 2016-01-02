@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.Game;
+
 /**
  * 
  */
@@ -17,16 +19,14 @@ public class Monster extends Character {
      * @param c Character with whom to fight
      */
     public void trigger(Character c) {
-        double probWin = c.getStrength() / (this.getStrength() + c.getStrength());
+        double probWin = ((double) c.getStrength() / ((double)this.getStrength() + (double)c.getStrength()));
         double combatResult = Math.random();
-        if (combatResult < probWin) { // Character dies
-            System.out.println("Monster has " + this.getStrength() + " strength");
-            System.out.println(this.getName() + " killed you");
+        if (combatResult > probWin) { // Character dies
+            Game.getInstance().setNotification("You were killed by a " + getName() + " with " + getStrength() + " strength.");
             c.setAlive(false);
         } else { // Monster dies
             this.setAlive(false);
-            System.out.println("Monster has " + this.getStrength() + " strength");
-            System.out.println("You killed a " + this.getName());
+            Game.getInstance().setNotification("You killed a " + getName() + " with " + getStrength() + " strength. he dropped " + getGold() + "Gold");
         }
     }
 
