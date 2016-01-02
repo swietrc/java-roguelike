@@ -2,9 +2,11 @@ package Controller;
 
 import Model.*;
 import Model.Character;
+import Utils.Const;
 import View.GameFrame;
 import View.GamePanel;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
@@ -13,33 +15,47 @@ import java.util.*;
  */
 public class Game {
 
+    private static GameFrame frame;
     private static Game instance;
+    private ConfigurationHolder cfg = new ConfigurationHolder(0, Const.DEFAULT_GENERATOR, Const.DEFAULT_DEPTH);
+
     private boolean DEAD;
 
     private Player player;
-    private GamePanel display;
-
     private IDungeonGenerator dungeonGenerator;
 
     /**
      * Default constructor
      */
     public Game() {
+        frame = new GameFrame();
+        showTitleScreen();
+    }
+
+    public void newGame() {
         this.dungeonGenerator = new BasicDungeonGenerator();
         Dungeon d = dungeonGenerator.generateDungeon();
         Room[] rooms = d.getRooms();
         this.player = new Player("Simon", rooms[0], 0, 0);
         rooms[0].getCell(0, 0).setEntity(player);
+
+        frame.showGame();
+        frame.refresh(player.getCurrentRoom().toString());
+    }
+
+    public void showTitleScreen() {
+        frame.showMenu();
     }
 
     /**
      * Main Game Loop
      */
+    /*
     public void run() {
-        GameFrame gameFrame = new View.GameFrame();
-        display = (GamePanel) gameFrame.getContentPane();
-        display.refresh(player.getCurrentRoom().toString());
+        System.out.println(player.getCurrentRoom().toString());
+        frame.showGame();
     }
+    */
 
     public void keyPressed(KeyEvent e) {
 
@@ -60,11 +76,12 @@ public class Game {
         }
 
         // update display
-        display.refresh(player.getCurrentRoom().toString());
-        display.setHUD(player.getGold(), player.getStrength());
+        frame.refresh(player.getCurrentRoom().toString());
+        frame.setHUD(player.getGold(), player.getStrength());
     }
 
     private void moveCharacter(Character c, Direction d) {
+        // Checks if player has died
         if (!DEAD) {
             int newX = c.getX();
             int newY = c.getY();
@@ -92,12 +109,29 @@ public class Game {
             }
 
             DEAD = c.isAlive();
-        } else System.out.println("You are dead!");
+            if (DEAD) {
+                JOptionPane.showConfirmDialog(null, "You died! You had " + this.player.getGold() + " gold!", "warning", JOptionPane.OK_OPTION);
+                this.showTitleScreen();
+            }
+        }
     }
 
     public static Game getInstance() {
         if (Game.instance == null)
             instance = new Game();
         return instance;
+    }
+
+    public void showOptions() {
+        frame.showOptions();
+    }
+
+    public void quit() {
+        frame.dispose();
+        System.exit(0);
+    }
+
+    public void setConfig(ConfigurationHolder c) {
+        this.cfg = c;
     }
 }

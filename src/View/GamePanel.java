@@ -1,6 +1,6 @@
 package View;
 
-import Utils.Utils;
+import Utils.Const;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +26,8 @@ public class GamePanel extends JPanel {
 
     private void init() {
         this.topLabel.setHorizontalAlignment(JLabel.CENTER);
-        this.topLabel.setFont(Utils.MENU_FONT);
-        this.gameInfo.setFont(Utils.MENU_FONT);
+        this.topLabel.setFont(Const.MENU_FONT);
+        this.gameInfo.setFont(Const.MENU_FONT);
         this.setFocusable(false);
         this.setLayout(new BorderLayout());
     }
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
      * Redraw the map
      * @param roomStr String containing the map
      */
-    public void refresh(String roomStr) {
+    protected void refresh(String roomStr) {
         map.drawFromString(roomStr);
     }
 
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
      * @param gold amount of gold of the player
      * @param strength amount of strength of the player
      */
-    public void setHUD(int gold, int strength) {
+    protected void setHUD(int gold, int strength) {
         this.gameInfo.setText("Gold: " + gold + " | Strength: " + strength);
     }
 }

@@ -1,26 +1,26 @@
 package View;
 
-import Controller.BasicDungeonGenerator;
 import Controller.Game;
-import Model.Room;
-import Utils.Utils;
+import Utils.Const;
+import View.Menu.MainMenu;
+import View.Menu.OptionsMenu;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 /**
  * Main Window of the game
  */
 public class GameFrame extends JFrame {
 
-    GamePanel p = new GamePanel();
+    private GamePanel gamePanel = new GamePanel();
+    private MainMenu menuPanel = new MainMenu();
+    private OptionsMenu optionsMenu = new OptionsMenu();
 
     public GameFrame() {
-        super("Roguelike v" + Utils.VERSION);
-        this.setContentPane(p);
-        this.setSize(Utils.WIDTH, Utils.HEIGHT);
+        super("Roguelike v" + Const.VERSION);
+        this.setSize(Const.WIDTH, Const.HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         setFocusable(true);
@@ -34,13 +34,29 @@ public class GameFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        Game.getInstance().run();
-        /*
-        Random rand = new Random(12345);
-        System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
-        System.out.println(rand.nextInt());
-        System.out.println(Math.round(rand.nextFloat()*1000) / 1000f);
-        */
-        // new BasicDungeonGenerator().generateDungeon();
+        Game.getInstance().showTitleScreen();
+        // new GameFrame().setContentPane(new MainMenu());
+    }
+
+    public void showMenu() {
+        this.setContentPane(menuPanel);
+    }
+
+    public void showGame() {
+        this.setContentPane(gamePanel);
+    }
+
+    public void showOptions() {
+        this.setContentPane(optionsMenu);
+        this.optionsMenu.revalidate();
+        this.optionsMenu.repaint();
+    }
+
+    public void refresh(String map) {
+        gamePanel.refresh(map);
+    }
+
+    public void setHUD(int gold, int strength) {
+        gamePanel.setHUD(gold, strength);
     }
 }

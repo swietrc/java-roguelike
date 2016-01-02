@@ -1,13 +1,9 @@
 package View;
 
-import Model.Cell;
-import Model.Room;
-import Utils.Utils;
+import Utils.Const;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class TextMap extends JPanel implements IMap {
 
@@ -27,7 +23,7 @@ public class TextMap extends JPanel implements IMap {
     }
 
     private void init() {
-        display.setFont(Utils.MAP_FONT);
+        display.setFont(Const.MAP_FONT);
         display.setEditable(false);
         display.setLineWrap(true);
         display.setBackground(Color.BLACK);

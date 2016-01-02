@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class BasicDungeonGenerator implements IDungeonGenerator {
 
+
+    public static final String NAME = "Tower generator";
     private static final int MAX_DEPTH = 10;
     private static final int MIN_DEPTH = 6;
 
