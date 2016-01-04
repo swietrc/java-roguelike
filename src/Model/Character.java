@@ -10,10 +10,8 @@ public abstract class Character extends Entity {
 
     /** Stores current state of the character (true if alive, false if dead) */
     private boolean alive;
-
     /** Stores name of the character */
     private String name;
-
     /** Stores the current room for the character */
     private Room currentRoom;
 

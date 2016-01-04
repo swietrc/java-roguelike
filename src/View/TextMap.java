@@ -13,13 +13,6 @@ public class TextMap extends JPanel implements IMap {
         this.setBackground(Color.BLACK);
         this.add(display);
         init();
-
-        /*
-        // Display test to be removed
-        Room r = new Room(10, 5, -1);
-        String str = r.toString(); //= "###########\n#..@......#\n#...>.....#\n#......$..#\n###########";
-        drawFromString(str);
-        */
     }
 
     private void init() {

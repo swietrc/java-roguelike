@@ -5,7 +5,7 @@ import Model.*;
 import java.util.*;
 
 /**
- * 
+ * Generates a tower dungeon
  */
 public class BasicDungeonGenerator implements IDungeonGenerator {
 
@@ -81,17 +81,27 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
 
             // generate stairs to go to the next room
             currentRoom.getCells()[currentRoomStairsY][currentRoomStairsX] = new Stairs(currentRoomStairsX,
-                    currentRoomStairsY, nextRoom, nextRoomStairsX, nextRoomStairsY);
+                    currentRoomStairsY, nextRoom, nextRoomStairsX, nextRoomStairsY, 1);
 
             // generate stairs to come back to the current room
             nextRoom.getCells()[nextRoomStairsY][nextRoomStairsX] = new Stairs(nextRoomStairsX, nextRoomStairsY, currentRoom,
-                    currentRoomStairsX, currentRoomStairsY);
+                    currentRoomStairsX, currentRoomStairsY, -1);
 
+            if (i == rooms.size() - 2) {
+                Cell exitCell;
+                int exitX, exitY;
+                do {
+                    exitX = randomGenerator.nextInt(nextRoom.getWidth() - 1);
+                    exitY = randomGenerator.nextInt(nextRoom.getHeight() - 1);
+
+                    exitCell = nextRoom.getCells()[exitY][exitX];
+                } while (exitCell instanceof Stairs);
+                nextRoom.getCells()[exitY][exitX] = new Exit(exitX, exitY);
+            }
         }
 
         // generation of entities inside cells
         for (Room r : this.rooms) {
-            System.out.println(r.getHeight() * r.getWidth());
             Cell[][] cells = r.getCells();
             for (Cell[] row : cells) {
                 for (Cell c : row) {
@@ -123,36 +133,6 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
         else
             return null;
     }
-
-    /*
-    private Room generateRoom(int level) {
-
-        int chanceOfStairs;
-        int stairs_x;
-        int stairs_y;
-
-        int width = randomGenerator.nextInt(Room.MAX_WIDTH - Room.MIN_HEIGHT) + Room.MIN_HEIGHT;
-        int height = randomGenerator.nextInt(Room.MAX_HEIGHT - Room.MIN_WIDTH) + Room.MIN_WIDTH;
-        Room r = new Room(width, height, level);
-        if (level == 1) {
-            stairs_x = randomGenerator.nextInt(r.getWidth() - 1);
-            System.out.println(stairs_x);
-            stairs_y = randomGenerator.nextInt(r.getHeight()- 1);
-            System.out.println(stairs_y);
-            System.out.println("width: " + r.getWidth());
-            System.out.println("height: " + r.getHeight());
-            r.getCells()[stairs_y][stairs_x] = new Stairs(stairs_x, stairs_y, null, 0, 0);
-        } else if (randomGenerator.nextFloat() > (0.25 * level)) {
-            stairs_x = randomGenerator.nextInt(r.getWidth() - 1);
-            stairs_y = randomGenerator.nextInt(r.getHeight()- 1);
-            Cell c = r.getCell(stairs_x, stairs_y);
-            if (!(c instanceof Stairs)) {
-                r.getCells()[stairs_y][stairs_x] = new Stairs(stairs_x, stairs_y, null, 0, 0);
-            }
-        }
-        return r;
-    }
-    */
 
     /**
      * Generates a room of random height and width

@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * 
+ * represents a room in the game
  */
 public class Room {
 
@@ -51,7 +51,11 @@ public class Room {
     }
 
     public Cell getCell(int xPos, int yPos) {
-        return cells[yPos][xPos];
+        try {
+            return cells[yPos][xPos];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     public Cell[][] getCells() {

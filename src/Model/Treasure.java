@@ -6,7 +6,7 @@ import Controller.Game;
  * Gives gold to the player who triggers it
  */
 public class Treasure extends Entity {
-
+    /** amount of gold stored by the treasure */
     private int gold;
 
     public Treasure(int gold) {
@@ -14,6 +14,10 @@ public class Treasure extends Entity {
         this.gold = gold;
     }
 
+    /**
+     * gives gold to the player who walks on it
+     * @param c
+     */
     public void trigger(Character c) {
         if (c instanceof Player) {
             ((Player) c).addGold(this.gold);

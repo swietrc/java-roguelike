@@ -7,6 +7,8 @@ import View.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * 
@@ -17,7 +19,7 @@ public class Game {
     private static Game instance;
     private ConfigurationHolder cfg = new ConfigurationHolder(0, Const.DEFAULT_GENERATOR, Const.DEFAULT_DEPTH);
 
-    private boolean alive;
+    private boolean win;
 
     private Player player;
     private IDungeonGenerator dungeonGenerator;
@@ -34,7 +36,13 @@ public class Game {
         this.dungeonGenerator = new BasicDungeonGenerator();
         Dungeon d = dungeonGenerator.generateDungeon();
         Room[] rooms = d.getRooms();
-        this.player = new Player("Simon", rooms[0], 0, 0);
+
+        String playername = JOptionPane.showInputDialog(null, "What's your name ?");
+        if (playername == null) playername = "anon";
+        System.out.println(playername);
+
+        this.player = new Player(playername, rooms[0], 0, 0);
+        player.getCurrentCell().setVisible(true);
         rooms[0].getCell(0, 0).setEntity(player);
 
         frame.showGame();
@@ -104,9 +112,22 @@ public class Game {
 
             if (newCell != currentCell) {
                 newCell.trigger(c);
+
+                // clear fog of war
+                Room currentCharacterRoom = c.getCurrentRoom();
+                Cell visibleCell;
+
+                for (int i = c.getY() - 1 ; i <= c.getY() + 1 ; i++) {
+                    for (int j = c.getX() - 1 ; j <= c.getX() + 1 ; j++) {
+                        visibleCell = currentCharacterRoom.getCell(j, i);
+                        if (visibleCell != null)
+                            visibleCell.setVisible(true);
+                    }
+                }
             }
+
             if (!c.isAlive()) {
-                JOptionPane.showConfirmDialog(null, "You died! You had " + this.player.getGold() + " gold!", "warning", JOptionPane.OK_OPTION);
+                JOptionPane.showConfirmDialog(null, "You died! You had " + this.player.getGold() + " gold!", "GAME OVER!", JOptionPane.OK_OPTION);
                 this.showTitleScreen();
             }
         }
@@ -118,20 +139,68 @@ public class Game {
         return instance;
     }
 
+    /**
+     * Shows options of the game
+     */
     public void showOptions() {
         frame.showOptions();
     }
 
+    /**
+     * quits the game
+     */
     public void quit() {
         frame.dispose();
         System.exit(0);
     }
 
+    /**
+     * Sets configuration of the game
+     * @param c
+     */
     public void setConfig(ConfigurationHolder c) {
         this.cfg = c;
     }
 
+    /**
+     * sets notification on the screen
+     * @param notif
+     */
     public void setNotification(String notif) {
         frame.setNotification(notif);
+    }
+
+    /**
+     * saves the score of the player and gets him back to the menu
+     */
+    public void win() {
+        JOptionPane.showConfirmDialog(null, "You won! You got out with " + this.player.getGold() + " gold!", "VICTORY!", JOptionPane.OK_OPTION);
+        this.saveScore();
+        this.showTitleScreen();
+    }
+
+    private void saveScore() {
+        try {
+            PrintWriter writer = new PrintWriter(new FileOutputStream(new File(Const.SCORE_FILE), true));
+            writer.println(this.player.getName() + ":" + this.player.getGold() + ":" + this.player.getStrength());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String[] getScores() throws IOException {
+        ArrayList<String> temp = new ArrayList<>();
+        FileReader reader = new FileReader(Const.SCORE_FILE);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String line = null;
+
+        while ((line = bufferedReader.readLine()) != null) {
+            temp.add(line);
+        }
+
+        String[] res = new String[temp.size()];
+        temp.toArray(res);
+        return res;
     }
 }

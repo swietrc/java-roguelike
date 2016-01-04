@@ -52,10 +52,12 @@ public class Cell {
 
     @Override
     public String toString() {
-        if (isEmpty())
-            return String.valueOf(this.sprite);
+         if (visited) {
+            if (isEmpty())
+                return String.valueOf(this.sprite);
 
-        return entity.toString();
+            return entity.toString();
+         } else return " ";
     }
 
     public int getY() {
@@ -64,5 +66,17 @@ public class Cell {
 
     public int getX() {
         return x;
+    }
+
+    public Entity getEntity() {
+        return this.entity;
+    }
+
+    public boolean isVisible() {
+        return visited;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visited = visible;
     }
 }

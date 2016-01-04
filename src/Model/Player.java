@@ -3,7 +3,7 @@ package Model;
 import Utils.Const;
 
 /**
- * 
+ * represents a player in the game
  */
 public class Player extends Character {
 
@@ -14,11 +14,18 @@ public class Player extends Character {
         this.setY(y);
     }
 
+    /**
+     * Adds gold to this.gold
+     * @param gold amount of gold to add
+     */
     public void addGold(int gold) {
         this.setGold(this.getGold() + gold);
         System.out.println("GOLD: " + this.getGold());
     }
-
+    /**
+     * Adds strength to this.strength
+     * @param strength amount of strength to add
+     */
     public void addStrength(int strength) {
         int currentStrength = this.getStrength();
         this.setStrength(currentStrength + strength);
@@ -35,7 +42,6 @@ public class Player extends Character {
 
     @Override
     public String getSprite() {
-
         return "@";
     }
 

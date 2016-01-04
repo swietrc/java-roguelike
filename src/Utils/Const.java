@@ -22,4 +22,6 @@ public class Const {
     public static final int DEFAULT_STRENGTH = 50;
     public static final String DEFAULT_GENERATOR = BasicDungeonGenerator.NAME;
     public static final int DEFAULT_DEPTH = 5;
+
+    public static String SCORE_FILE = "./scoreboard.txt";
 }

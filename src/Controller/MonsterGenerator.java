@@ -52,7 +52,6 @@ public class MonsterGenerator {
 
         private Monster buildMonster() {
             int strength = randomGenerator.nextInt(this.maxStrength - this.minStrength) + this.minStrength;
-            System.out.println("Build monster with strength " + strength);
             int gold = randomGenerator.nextInt(this.maxGold - this.minGold) + this.minGold;
 
             return new Monster(this.name, strength, gold);
