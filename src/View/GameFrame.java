@@ -35,15 +35,18 @@ public class GameFrame extends JFrame {
 
     public static void main(String[] args) {
         Game.getInstance().showTitleScreen();
-        // new GameFrame().setContentPane(new MainMenu());
     }
 
     public void showMenu() {
         this.setContentPane(menuPanel);
+        this.menuPanel.revalidate();
+        this.menuPanel.repaint();
     }
 
     public void showGame() {
         this.setContentPane(gamePanel);
+        this.gamePanel.revalidate();
+        this.gamePanel.repaint();
     }
 
     public void showOptions() {

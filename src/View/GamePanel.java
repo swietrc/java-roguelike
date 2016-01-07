@@ -17,7 +17,7 @@ public class GamePanel extends JPanel {
     /** Main display showing the map with the position of the player (@) */
     private TextMap map = new TextMap();
     /** Notification display */
-    private JLabel notifLabel = new JLabel("test");
+    private JLabel notifLabel = new JLabel();
 
     public GamePanel() {
         init();
@@ -29,7 +29,6 @@ public class GamePanel extends JPanel {
         p.add(notifLabel);
         p.add(gameInfo);
 
-        // this.add(gameInfo, BorderLayout.SOUTH);
         this.add(p, BorderLayout.SOUTH);
         setHUD(0, 0, 0);
     }

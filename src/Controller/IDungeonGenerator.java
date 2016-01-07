@@ -1,12 +1,7 @@
 package Controller;
 
-import java.util.*;
-
-/**
- * 
- */
 public interface IDungeonGenerator {
 
-    public Dungeon generateDungeon();
+    public Dungeon generateDungeon(int depth);
 
 }

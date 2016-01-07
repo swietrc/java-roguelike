@@ -3,6 +3,7 @@ package View.Menu;
 import Controller.BasicDungeonGenerator;
 import Controller.ConfigurationHolder;
 import Controller.Game;
+import Controller.KrakenDungeonGenerator;
 import Utils.Const;
 import Utils.Toolbox;
 
@@ -15,7 +16,7 @@ import java.awt.event.ActionListener;
 
 public class OptionsMenu extends JPanel {
 
-    private String[] generatorList = new String[] {BasicDungeonGenerator.NAME};
+    private String[] generatorList = new String[] {BasicDungeonGenerator.NAME, KrakenDungeonGenerator.NAME};
 
     private JComboBox generatorCombo = new JComboBox(generatorList);
     private JTextField depthField = new JTextField();
@@ -36,7 +37,7 @@ public class OptionsMenu extends JPanel {
         this.add(Box.createVerticalStrut(10));
         this.add(menuTitle);
         this.add(Box.createVerticalStrut(10));
-        this.setBackground(Color.RED);
+        this.setBackground(Color.LIGHT_GRAY);
 
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new GridBagLayout());
@@ -96,6 +97,7 @@ public class OptionsMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 ConfigurationHolder c = new ConfigurationHolder(getSeed(), getGenerator(), getDepth());
                 Game.getInstance().setConfig(c);
+                Game.getInstance().showTitleScreen();
             }
         });
 

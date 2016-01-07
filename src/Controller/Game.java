@@ -33,8 +33,11 @@ public class Game {
     }
 
     public void newGame() {
-        this.dungeonGenerator = new BasicDungeonGenerator();
-        Dungeon d = dungeonGenerator.generateDungeon();
+
+        // this.dungeonGenerator = new BasicDungeonGenerator();
+        this.dungeonGenerator = cfg.getGenerator();
+
+        Dungeon d = dungeonGenerator.generateDungeon(cfg.getDepth());
         Room[] rooms = d.getRooms();
 
         String playername = JOptionPane.showInputDialog(null, "What's your name ?");
@@ -47,6 +50,7 @@ public class Game {
 
         frame.showGame();
         frame.refresh(player.getCurrentRoom().toString());
+        frame.setHUD(player.getGold(), player.getStrength(), player.getCurrentRoom().getLevel());
     }
 
     public void showTitleScreen() {

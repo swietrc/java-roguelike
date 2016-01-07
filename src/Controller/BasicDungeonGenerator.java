@@ -51,7 +51,7 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
      * generates a basic dungeon
      * @return basic dungeon
      */
-    public Dungeon generateDungeon() {
+    public Dungeon generateDungeon(int depth) {
 
         // stores the room being generated
         Room currentRoom;
@@ -61,7 +61,7 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
         int nextRoomStairsX, nextRoomStairsY;
 
         // Generating random depth between MIN_DEPTH included and MAX_DEPTH excluded
-        int depth = randomGenerator.nextInt(MAX_DEPTH - MIN_DEPTH) + MIN_DEPTH;
+        // depth = randomGenerator.nextInt(MAX_DEPTH - MIN_DEPTH) + MIN_DEPTH;
 
         // first generate as many rooms as the depth of the dungeon (path to exit)
         for (int i = 0 ; i < depth ; i++)
@@ -121,7 +121,7 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
      * Generates a random entity using the constants defined in this class
      * @return random entity
      */
-    private Entity generateEntity() {
+    protected Entity generateEntity() {
         // choose what entity to return
         float entitySelector = ((int) (randomGenerator.nextFloat() * 1000)) / 1000f;
         if (entitySelector <= COEF_TREASURE)
@@ -138,10 +138,48 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
      * Generates a room of random height and width
      * @return
      */
-    private Room generateRoom(int level) {
+    protected Room generateRoom(int level) {
         int width = randomGenerator.nextInt(Room.MAX_WIDTH - Room.MIN_HEIGHT) + Room.MIN_HEIGHT;
         int height = randomGenerator.nextInt(Room.MAX_HEIGHT - Room.MIN_WIDTH) + Room.MIN_WIDTH;
         Room r = new Room(width, height, level);
         return r;
+    }
+
+    /**
+     * Generates stairs between rooms r1 and r2
+     * Stairs in r1 to link to r2
+     * Stairs in r2 to link to r1
+     * @param r1 entry point of the stairs
+     * @param r2 entry point of the stairs
+     */
+    protected void generateStairs(Room r1, Room r2) {
+        // X,Y Coordinates of stairs in r1
+        int r1StairsX, r1StairsY;
+        // X,Y Coordinates of stairs in r2
+        int r2StairsX, r2StairsY;
+
+        // get random coordinates for stairs in r1
+        do {
+            r1StairsX = randomGenerator.nextInt(r1.getWidth());
+            r1StairsY = randomGenerator.nextInt(r1.getHeight());
+        } while (r1.getCell(r1StairsX, r1StairsY) instanceof Stairs);
+
+        // get random coordinates for stairs in r2
+        do {
+            r2StairsX = randomGenerator.nextInt(r2.getWidth());
+            r2StairsY = randomGenerator.nextInt(r2.getHeight());
+        } while (r2.getCell(r2StairsX, r2StairsY) instanceof Stairs);
+
+        // generate stairs to go to r2
+        r1.getCells()[r1StairsY][r1StairsX] = new Stairs(r1StairsX,
+                r1StairsY, r2, r2StairsX, r2StairsY, 1);
+
+        // generate stairs to go to r1
+        r2.getCells()[r2StairsY][r2StairsX] = new Stairs(r2StairsX,
+                r2StairsY, r1, r1StairsX, r1StairsY, -1);
+    }
+
+    protected Random getRandomGenerator() {
+        return randomGenerator;
     }
 }
