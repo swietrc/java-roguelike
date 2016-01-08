@@ -179,6 +179,10 @@ public class TowerDungeonGenerator implements IDungeonGenerator {
                 r2StairsY, r1, r1StairsX, r1StairsY, -1);
     }
 
+    /**
+     * Accessor for randomGenerator
+     * @return randomGenerator
+     */
     protected Random getRandomGenerator() {
         return randomGenerator;
     }

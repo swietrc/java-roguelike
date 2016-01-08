@@ -4,6 +4,9 @@ import Controller.TowerDungeonGenerator;
 
 import java.awt.*;
 
+/**
+ * Constants used throughout the program
+ */
 public class Const {
     public static final String VERSION = "1.0";
     public static final int MAP_TEXTSIZE = 16;

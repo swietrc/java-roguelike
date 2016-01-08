@@ -5,6 +5,9 @@ import Utils.Const;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * JTextArea displaying the map
+ */
 public class TextMap extends JPanel implements IMap {
 
     private JTextArea display = new JTextArea();
@@ -24,6 +27,10 @@ public class TextMap extends JPanel implements IMap {
         display.setFocusable(false);
     }
 
+    /***
+     * Draws map from string
+     * @param s map
+     */
     @Override
     public void drawFromString(String s) {
         // Splits the string every \n to get the width of the room.

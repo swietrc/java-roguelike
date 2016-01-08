@@ -2,6 +2,9 @@ package Model;
 
 import Controller.Game;
 
+/**
+ * Exit of the dungeon
+ */
 public class Exit extends Cell {
 
     public Exit(int x, int y) {

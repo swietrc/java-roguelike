@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Contains display of scoreboard
+ */
 public class ScoreboardMenu extends JPanel {
 
     JTable table;

@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * 
+ * Represents Cell in-game
  */
 public class Cell {
 

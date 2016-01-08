@@ -5,11 +5,11 @@ import Model.Monster;
 import java.util.*;
 
 /**
- * 
+ * Generates random monsters
  */
 public class MonsterGenerator {
 
-    /** */
+    /** factor used to scale strength of monsters */
     private static int difficultyFactor = 0;
     /** Random number generator */
     private Random randomGenerator;
@@ -98,6 +98,10 @@ public class MonsterGenerator {
         return instance;
     }
 
+    /**
+     * Setter for difficultyFactor
+     * @param factor difficulty factor
+     */
     public static void setDifficultyFactor(int factor) {
         MonsterGenerator.difficultyFactor = factor;
     }

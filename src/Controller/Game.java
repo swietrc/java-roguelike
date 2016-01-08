@@ -207,6 +207,14 @@ public class Game {
      */
     public void updateScores() {
         ArrayList<String> temp = new ArrayList<>();
+        File f = new File(Const.SCORE_FILE);
+        if (!f.exists())
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         FileReader reader = null;
         try {
             reader = new FileReader(Const.SCORE_FILE);
