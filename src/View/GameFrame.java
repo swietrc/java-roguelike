@@ -4,6 +4,7 @@ import Controller.Game;
 import Utils.Const;
 import View.Menu.MainMenu;
 import View.Menu.OptionsMenu;
+import View.Menu.ScoreboardMenu;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -17,6 +18,7 @@ public class GameFrame extends JFrame {
     private GamePanel gamePanel = new GamePanel();
     private MainMenu menuPanel = new MainMenu();
     private OptionsMenu optionsMenu = new OptionsMenu();
+    // private ScoreboardMenu scoreboardMenu = new ScoreboardMenu();
 
     public GameFrame() {
         super("Roguelike v" + Const.VERSION);
@@ -39,20 +41,29 @@ public class GameFrame extends JFrame {
 
     public void showMenu() {
         this.setContentPane(menuPanel);
-        this.menuPanel.revalidate();
-        this.menuPanel.repaint();
+        // this.menuPanel.revalidate();
+        // this.menuPanel.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     public void showGame() {
         this.setContentPane(gamePanel);
-        this.gamePanel.revalidate();
-        this.gamePanel.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     public void showOptions() {
         this.setContentPane(optionsMenu);
-        this.optionsMenu.revalidate();
-        this.optionsMenu.repaint();
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void showScoreboard() {
+        // this.scoreboardMenu.updateBoard();
+        this.setContentPane(new ScoreboardMenu());
+        this.revalidate();
+        this.repaint();
     }
 
     public void refresh(String map) {

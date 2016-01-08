@@ -15,9 +15,10 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private static String[][] scores;
     private static GameFrame frame;
     private static Game instance;
-    private ConfigurationHolder cfg = new ConfigurationHolder(0, Const.DEFAULT_GENERATOR, Const.DEFAULT_DEPTH);
+    private ConfigurationHolder cfg = new ConfigurationHolder(0, Const.DEFAULT_GENERATOR, Const.DEFAULT_DEPTH, false);
 
     private boolean win;
 
@@ -29,12 +30,15 @@ public class Game {
      */
     public Game() {
         frame = new GameFrame();
+        updateScores();
         showTitleScreen();
     }
 
+    /**
+     * Initializes a new game
+     */
     public void newGame() {
-
-        // this.dungeonGenerator = new BasicDungeonGenerator();
+        // this.dungeonGenerator = new TowerDungeonGenerator();
         this.dungeonGenerator = cfg.getGenerator();
 
         Dungeon d = dungeonGenerator.generateDungeon(cfg.getDepth());
@@ -53,20 +57,16 @@ public class Game {
         frame.setHUD(player.getGold(), player.getStrength(), player.getCurrentRoom().getLevel());
     }
 
+    /** Displays title screen in the main frame */
     public void showTitleScreen() {
         frame.showMenu();
     }
 
-    /**
-     * Main Game Loop
-     */
-    /*
-    public void run() {
-        System.out.println(player.getCurrentRoom().toString());
-        frame.showGame();
+    public void showScoreboard() {
+        frame.showScoreboard();
     }
-    */
 
+    /** Gets executed after every key press */
     public void keyPressed(KeyEvent e) {
         setNotification("");
         // handle key pressed event
@@ -90,6 +90,11 @@ public class Game {
         frame.setHUD(player.getGold(), player.getStrength(), player.getCurrentRoom().getLevel());
     }
 
+    /**
+     * Moves a character in a certain direction if possible
+     * @param c Character
+     * @param d Direction
+     */
     private void moveCharacter(Character c, Direction d) {
         // Checks if player has died
         if (c.isAlive()) {
@@ -180,9 +185,13 @@ public class Game {
     public void win() {
         JOptionPane.showConfirmDialog(null, "You won! You got out with " + this.player.getGold() + " gold!", "VICTORY!", JOptionPane.OK_OPTION);
         this.saveScore();
+        this.updateScores();
         this.showTitleScreen();
     }
 
+    /**
+     * Saves the current score at the end of a file
+     */
     private void saveScore() {
         try {
             PrintWriter writer = new PrintWriter(new FileOutputStream(new File(Const.SCORE_FILE), true));
@@ -193,18 +202,56 @@ public class Game {
         }
     }
 
-    public String[] getScores() throws IOException {
+    /**
+     * Updates this.scores by reading the file where score is stored
+     */
+    public void updateScores() {
         ArrayList<String> temp = new ArrayList<>();
-        FileReader reader = new FileReader(Const.SCORE_FILE);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(Const.SCORE_FILE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader bufferedReader = new BufferedReader(reader);
         String line = null;
 
-        while ((line = bufferedReader.readLine()) != null) {
-            temp.add(line);
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                temp.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        String[] res = new String[temp.size()];
-        temp.toArray(res);
-        return res;
+        String[][] res = new String[temp.size()][];
+
+        for (int i = 0; i < temp.size() ; i++) {
+            res[i] = temp.get(i).split(":");
+        }
+        try {
+            bufferedReader.close();
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        scores = res;
+    }
+
+    /**
+     * Accessor for Game.scores
+     * @return String[][] Game.scores
+     */
+    public String[][] getScores() {
+        return Game.scores;
+    }
+
+    /**
+     * Accessor for the configuration of the current game
+     * @return ConfigurationHolder configuration
+     */
+    public ConfigurationHolder getConfiguration() {
+        return this.cfg;
     }
 }

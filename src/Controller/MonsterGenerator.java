@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class MonsterGenerator {
 
+    /** */
+    private static int difficultyFactor = 0;
     /** Random number generator */
     private Random randomGenerator;
     /** Stores all the types of monster to generate */
@@ -50,8 +52,12 @@ public class MonsterGenerator {
             this.maxGold = maxGold;
         }
 
+        /**
+         * Returns an instance of monster with this.name, this.strength, this.gold
+         * @return Monster
+         */
         private Monster buildMonster() {
-            int strength = randomGenerator.nextInt(this.maxStrength - this.minStrength) + this.minStrength;
+            int strength = (randomGenerator.nextInt(this.maxStrength - this.minStrength) + this.minStrength) * (1 + difficultyFactor/10);
             int gold = randomGenerator.nextInt(this.maxGold - this.minGold) + this.minGold;
 
             return new Monster(this.name, strength, gold);
@@ -64,7 +70,7 @@ public class MonsterGenerator {
         addType("Bat", 1, 5, 2, 5);
         addType("Centaur", 15, 60, 25, 100);
         addType("Charizard", 250, 450, 25, 100);
-        addType("Murloc", 10, 20, 25, 9999999);
+        addType("Murloc", 10, 20, 25, 259);
     }
 
     public void setRandomGenerator(Random r) {
@@ -92,4 +98,7 @@ public class MonsterGenerator {
         return instance;
     }
 
+    public static void setDifficultyFactor(int factor) {
+        MonsterGenerator.difficultyFactor = factor;
+    }
 }

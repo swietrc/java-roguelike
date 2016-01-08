@@ -61,7 +61,8 @@ public class MainMenu extends JPanel {
         scoreboardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showConfirmDialog(null, "The scoreboard is saved in a file named scoreboard.txt where the game is started", "", JOptionPane.OK_CANCEL_OPTION);
+                Game.getInstance().showScoreboard();
+                // JOptionPane.showConfirmDialog(null, "The scoreboard is saved in a file named scoreboard.txt where the game is started", "", JOptionPane.OK_CANCEL_OPTION);
             }
         });
         optionsButton.addActionListener(new ActionListener() {

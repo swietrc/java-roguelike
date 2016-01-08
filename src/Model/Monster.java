@@ -27,7 +27,7 @@ public class Monster extends Character {
         } else { // Monster dies
             this.setAlive(false);
             if (c instanceof  Player) ((Player)c).addGold(this.getGold());
-            Game.getInstance().setNotification("You killed a " + getName() + " with " + getStrength() + " strength. he dropped " + getGold() + "Gold");
+            Game.getInstance().setNotification("You killed a " + getName() + " with " + getStrength() + " strength. he dropped " + getGold() + " Gold");
         }
     }
 

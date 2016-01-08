@@ -7,9 +7,7 @@ public class Toolbox {
             Integer.parseInt(s);
             res = true;
         } catch(NumberFormatException e) {
-
         }
-
         return res;
     }
 }

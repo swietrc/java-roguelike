@@ -7,19 +7,17 @@ import java.util.*;
 /**
  * Generates a tower dungeon
  */
-public class BasicDungeonGenerator implements IDungeonGenerator {
+public class TowerDungeonGenerator implements IDungeonGenerator {
 
 
     public static final String NAME = "Tower generator";
-    private static final int MAX_DEPTH = 10;
-    private static final int MIN_DEPTH = 6;
 
     public int MAX_POTIONS = 50;
     public int MAX_TREASURES = 50;
-    public int MIN_POTIONS = 20;
+    public int MIN_POTIONS = -20;
     public int MIN_TREASURES = 20;
 
-    public float COEF_MONSTER = 0.015f;
+    public float COEF_MONSTER = 0.095f;
     public float COEF_POTION = 0.025f;
     public float COEF_TREASURE = 0.015f;
 
@@ -36,14 +34,14 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
      * Generates a random dungeon using a seed
      * @param seed
      */
-    public BasicDungeonGenerator(int seed) {
+    public TowerDungeonGenerator(int seed) {
         randomGenerator = new Random(seed);
     }
 
     /**
      * Generates a random dungeon using a random seed
      */
-    public BasicDungeonGenerator() {
+    public TowerDungeonGenerator() {
         randomGenerator = new Random();
     }
 
@@ -105,6 +103,8 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
             Cell[][] cells = r.getCells();
             for (Cell[] row : cells) {
                 for (Cell c : row) {
+                    if (Game.getInstance().getConfiguration().isProgressive())
+                        MonsterGenerator.setDifficultyFactor(r.getLevel() - 1);
                     c.setEntity(generateEntity());
                 }
             }
@@ -130,8 +130,8 @@ public class BasicDungeonGenerator implements IDungeonGenerator {
             return monsterGenerator.getRandomMonster();
         else if (entitySelector > (COEF_MONSTER + COEF_TREASURE) && entitySelector < (COEF_MONSTER + COEF_TREASURE + COEF_POTION))
             return new Potion(randomGenerator.nextInt(MAX_POTIONS - MIN_POTIONS) + MIN_POTIONS);
-        else
-            return null;
+        else {
+            return null; }
     }
 
     /**
